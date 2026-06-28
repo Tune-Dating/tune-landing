@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tune — coming soon</title>
+  <meta name="description" content="Tune is a new dating app for meeting people you're genuinely in tune with. Launching in the United States. iOS and Android." />
+
+  <!-- Social preview -->
+  <meta property="og:title" content="Tune — coming soon" />
+  <meta property="og:description" content="Meet people you're genuinely in tune with. A new dating app, launching in the US." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tune.dating" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-1: #181030;
+      --bg-2: #2a1539;
+      --ink: #f5ece3;
+      --muted: #b3a6c2;
+      --coral: #ff8a5b;
+      --rose: #ef82ab;
+      --focus: #ffd9a3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 7vh 1.5rem;
+      background:
+        radial-gradient(120% 90% at 50% 18%, rgba(255, 138, 91, 0.16), transparent 55%),
+        linear-gradient(165deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Signature: two waves drifting into phase, behind the wordmark */
+    .waves {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+      filter: blur(0.4px);
+    }
+    .wave { fill: none; stroke-width: 2.5; transform-box: view-box; }
+    .wave--coral { stroke: var(--coral); animation: drift 11s linear infinite; }
+    .wave--rose  { stroke: var(--rose);  opacity: 0.8; animation: drift 17s linear infinite reverse; }
+
+    @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-300px); } }
+
+    .stage { position: relative; z-index: 1; max-width: 40rem; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.7rem;
+    }
+    .pulse {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 0 0 rgba(255, 138, 91, 0.55);
+      animation: pulse 2.4s ease-out infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255, 138, 91, 0.5); }
+      70%  { box-shadow: 0 0 0 9px rgba(255, 138, 91, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 138, 91, 0); }
+    }
+
+    .wordmark {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(4.5rem, 19vw, 11rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      background: linear-gradient(100deg, var(--coral), var(--rose));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .tagline {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.35rem, 3.6vw, 1.95rem);
+      line-height: 1.25;
+      margin-top: 1.6rem;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.5;
+      margin-top: 0.95rem;
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 2.4rem;
+      padding: 0.95rem 1.9rem;
+      border-radius: 999px;
+      background: linear-gradient(100deg, var(--coral), var(--rose));
+      color: #2a0f1a;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 10px 30px -12px rgba(255, 138, 91, 0.7);
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -12px rgba(255, 138, 91, 0.8); }
+    .cta:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+    .foot {
+      position: fixed;
+      left: 0; right: 0; bottom: 1.4rem;
+      z-index: 1;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(245, 236, 227, 0.25); }
+    .foot a:hover { border-color: var(--coral); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wave, .pulse { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <svg class="waves" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="wave wave--coral" d="M -300 300 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0" />
+    <path class="wave wave--rose"  d="M -375 320 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0" />
+  </svg>
+
+  <main class="stage">
+    <p class="eyebrow"><span class="pulse"></span> Coming soon</p>
+    <h1 class="wordmark">Tune</h1>
+    <p class="tagline">Meet people you're genuinely in tune with.</p>
+    <p class="sub">A new dating app, launching in the United States — iOS&nbsp;and&nbsp;Android.</p>
+    <a class="cta" href="mailto:support@tune.dating?subject=Tune%20%E2%80%94%20early%20access">Request an invite</a>
+  </main>
+
+  <footer class="foot"><a href="mailto:support@tune.dating">support@tune.dating</a> &nbsp;·&nbsp; © 2026 Tune</footer>
+</body>
+</html>
