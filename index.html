@@ -29,8 +29,6 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body { height: 100%; }
-
     body {
       min-height: 100svh;
       display: grid;
@@ -42,7 +40,9 @@
       color: var(--ink);
       font-family: "DM Sans", system-ui, sans-serif;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      align-content: center;
+      row-gap: 3.5rem;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -130,15 +130,31 @@
     .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -12px rgba(255, 138, 91, 0.8); }
     .cta:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
+    .about { margin-top: 4.5rem; display: grid; gap: 2.4rem; }
+    .about h2 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 500;
+      font-size: 1.3rem;
+      margin-bottom: 0.55rem;
+    }
+    .about p {
+      max-width: 32rem;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
     .foot {
-      position: fixed;
-      left: 0; right: 0; bottom: 1.4rem;
+      position: relative;
       z-index: 1;
       font-size: 0.85rem;
+      line-height: 1.8;
       color: var(--muted);
     }
-    .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(245, 236, 227, 0.25); }
-    .foot a:hover { border-color: var(--coral); }
+    .about a, .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(245, 236, 227, 0.25); }
+    .about a:hover, .foot a:hover { border-color: var(--coral); }
+    .about a:focus-visible, .foot a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
     @media (prefers-reduced-motion: reduce) {
       .wave, .pulse { animation: none; }
@@ -157,8 +173,22 @@
     <p class="tagline">Meet people you're genuinely in tune with.</p>
     <p class="sub">A new dating app, launching in the United States — iOS&nbsp;and&nbsp;Android.</p>
     <a class="cta" href="mailto:support@tune.dating?subject=Tune%20%E2%80%94%20early%20access">Request an invite</a>
+
+    <div class="about">
+      <section aria-labelledby="about-heading">
+        <h2 id="about-heading">About Tune</h2>
+        <p>Dating apps are broken. They get worse the longer you use them. We built Tune the other way: your dates get better the longer you use it. We're launching in Seattle first.</p>
+      </section>
+      <section aria-labelledby="careers-heading">
+        <h2 id="careers-heading">Careers</h2>
+        <p>We're hiring a Founding Community Lead in Seattle. Write to <a href="mailto:career@tune.dating">career@tune.dating</a>.</p>
+      </section>
+    </div>
   </main>
 
-  <footer class="foot"><a href="mailto:support@tune.dating">support@tune.dating</a> &nbsp;·&nbsp; © 2026 Tunelab Technologies, Inc.</footer>
+  <footer class="foot">
+    <p><a href="mailto:support@tune.dating">support@tune.dating</a> &nbsp;·&nbsp; <a href="mailto:career@tune.dating">career@tune.dating</a></p>
+    <p>© 2026 Tunelab Technologies, Inc. &nbsp;·&nbsp; Registered office: 251 Little Falls Drive, Wilmington, DE 19808</p>
+  </footer>
 </body>
 </html>
