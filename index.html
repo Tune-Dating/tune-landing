@@ -32,8 +32,9 @@
     body {
       min-height: 100svh;
       display: grid;
+      grid-template-rows: 1fr auto;
       place-items: center;
-      padding: 7vh 1.5rem;
+      padding: 7vh 1.5rem 1.4rem;
       background:
         radial-gradient(120% 90% at 50% 18%, rgba(255, 138, 91, 0.16), transparent 55%),
         linear-gradient(165deg, var(--bg-1) 0%, var(--bg-2) 100%);
@@ -41,8 +42,6 @@
       font-family: "DM Sans", system-ui, sans-serif;
       text-align: center;
       overflow-x: hidden;
-      align-content: center;
-      row-gap: 3.5rem;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -64,28 +63,6 @@
     @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-300px); } }
 
     .stage { position: relative; z-index: 1; max-width: 40rem; }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      font-size: 0.82rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.7rem;
-    }
-    .pulse {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--coral);
-      box-shadow: 0 0 0 0 rgba(255, 138, 91, 0.55);
-      animation: pulse 2.4s ease-out infinite;
-    }
-    @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(255, 138, 91, 0.5); }
-      70%  { box-shadow: 0 0 0 9px rgba(255, 138, 91, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 138, 91, 0); }
-    }
 
     .wordmark {
       font-family: "Fraunces", Georgia, serif;
@@ -114,50 +91,22 @@
       margin-top: 0.95rem;
     }
 
-    .cta {
-      display: inline-block;
-      margin-top: 2.4rem;
-      padding: 0.95rem 1.9rem;
-      border-radius: 999px;
-      background: linear-gradient(100deg, var(--coral), var(--rose));
-      color: #2a0f1a;
-      font-weight: 500;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      box-shadow: 0 10px 30px -12px rgba(255, 138, 91, 0.7);
-    }
-    .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -12px rgba(255, 138, 91, 0.8); }
-    .cta:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-
-    .about { margin-top: 4.5rem; display: grid; gap: 2.4rem; }
-    .about h2 {
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 500;
-      font-size: 1.3rem;
-      margin-bottom: 0.55rem;
-    }
-    .about p {
-      max-width: 32rem;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.65;
-    }
-
     .foot {
       position: relative;
       z-index: 1;
+      display: grid;
+      gap: 0.8rem;
       font-size: 0.85rem;
-      line-height: 1.8;
       color: var(--muted);
     }
-    .about a, .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(245, 236, 227, 0.25); }
-    .about a:hover, .foot a:hover { border-color: var(--coral); }
-    .about a:focus-visible, .foot a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+    .foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.75rem; }
+    .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(245, 236, 227, 0.25); }
+    .foot a:hover { border-color: var(--coral); }
+    .foot a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+    .legal { font-size: 0.78rem; line-height: 1.6; }
 
     @media (prefers-reduced-motion: reduce) {
-      .wave, .pulse { animation: none; }
+      .wave { animation: none; }
     }
   </style>
 </head>
@@ -168,27 +117,18 @@
   </svg>
 
   <main class="stage">
-    <p class="eyebrow"><span class="pulse"></span> Coming soon</p>
     <h1 class="wordmark">Tune</h1>
     <p class="tagline">Meet people you're genuinely in tune with.</p>
-    <p class="sub">A new dating app, launching in the United States — iOS&nbsp;and&nbsp;Android.</p>
-    <a class="cta" href="mailto:support@tune.dating?subject=Tune%20%E2%80%94%20early%20access">Request an invite</a>
-
-    <div class="about">
-      <section aria-labelledby="about-heading">
-        <h2 id="about-heading">About Tune</h2>
-        <p>Dating apps are broken. They get worse the longer you use them. We built Tune the other way: your dates get better the longer you use it. We're launching in Seattle first.</p>
-      </section>
-      <section aria-labelledby="careers-heading">
-        <h2 id="careers-heading">Careers</h2>
-        <p>We're hiring a Founding Community Lead in Seattle. Write to <a href="mailto:career@tune.dating">career@tune.dating</a>.</p>
-      </section>
-    </div>
+    <p class="sub">A fresh perspective to dating, launching in the&nbsp;US.</p>
   </main>
 
   <footer class="foot">
-    <p><a href="mailto:support@tune.dating">support@tune.dating</a> &nbsp;·&nbsp; <a href="mailto:career@tune.dating">career@tune.dating</a></p>
-    <p>© 2026 Tunelab Technologies, Inc. &nbsp;·&nbsp; Registered office: 251 Little Falls Drive, Wilmington, DE 19808</p>
+    <nav aria-label="Footer">
+      <a href="/about/">About Tune</a>
+      <a href="mailto:career@tune.dating">Careers</a>
+      <a href="mailto:support@tune.dating">Contact</a>
+    </nav>
+    <p class="legal">© 2026 Tunelab Technologies, Inc.<br />251 Little Falls Drive, Wilmington, DE 19808</p>
   </footer>
 </body>
 </html>
