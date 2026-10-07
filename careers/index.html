@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Careers at Tune</title>
+  <meta name="description" content="Founding Community Lead, Seattle: the first person on the ground for Tune, a new dating app preparing to launch in Seattle." />
+  <meta name="theme-color" content="#31182f" />
+
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Urbanist:wght@500;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <a class="top" href="/" aria-label="Tune home">
+    <svg viewBox="4 13 92 74" aria-hidden="true">
+      <path transform="translate(11,-7)" d="M50,38 C54,30 64,24 72,30 C82,38 80,52 50,72" fill="none" stroke="#f0a23c" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+      <path transform="translate(-11,7)" d="M50,38 C46,30 36,24 28,30 C18,38 20,52 50,72" fill="none" stroke="#e0694f" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span aria-hidden="true"><span class="tu">tu</span><span class="ne">ne</span></span>
+  </a>
+
+  <main class="page">
+    <p class="eyebrow">Careers</p>
+    <h1>Founding Community Lead, Seattle</h1>
+    <p class="lede">Tune is preparing to launch in Seattle, and this is the first role on the ground: local marketing, partnerships, an ambassador team and the first community of users.</p>
+    <ul class="facts">
+      <li>It starts as a paid eight-week contract from early January 2027: 20 to 25 hours a week at $35 an hour.</li>
+      <li>If it works for both of us, it becomes full-time at $58,000 to $72,000 a year, plus equity.</li>
+      <li>In person in Seattle, working directly with the CEO.</li>
+    </ul>
+    <a class="button" href="https://wellfound.com/jobs/4779110-founding-community-lead-seattle">Read the role and apply on Wellfound</a>
+    <p>Or write to <a href="mailto:career@tune.dating">career@tune.dating</a><button class="copy" type="button" data-copy="career@tune.dating">Copy</button></p>
+  </main>
+
+  <footer class="foot">
+    <nav aria-label="Footer">
+      <a href="/about/">About Tune</a>
+      <a href="/careers/" aria-current="page">Careers</a>
+      <a href="mailto:support@tune.dating">support@tune.dating</a>
+    </nav>
+    <p class="legal">© 2026 Tunelab Technologies, Inc.<br />251 Little Falls Drive, Wilmington, DE 19808</p>
+  </footer>
+
+  <script>
+    // A mailto link does nothing for people whose browser has no mail app set, so the address can be copied too.
+    document.querySelectorAll("[data-copy]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        navigator.clipboard.writeText(button.dataset.copy).then(function () {
+          button.textContent = "Copied";
+          setTimeout(function () { button.textContent = "Copy"; }, 2000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

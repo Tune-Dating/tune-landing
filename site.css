@@ -1,0 +1,202 @@
+/* Tune's locked brand: the plum field, coral and amber, cream and rose; Urbanist, with Fraunces for quiet lines. */
+:root {
+  --field-from: #31182f;
+  --field-to: #48223a;
+  --coral: #e0694f;
+  --amber: #f0a23c;
+  --cream: #fff7f1;
+  --rose: #d9a8a0;
+  --focus: #ffd27e;
+  --mark: clamp(230px, 44vw, 340px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--field-from); }
+
+body {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 1.5rem 1.5rem 1.4rem;
+  background:
+    radial-gradient(70% 55% at 50% 34%, rgba(255, 228, 178, 0.08), transparent 70%),
+    linear-gradient(168deg, var(--field-from) 0%, var(--field-to) 100%);
+  color: var(--cream);
+  font-family: "Urbanist", system-ui, sans-serif;
+  font-weight: 500;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.home { grid-template-rows: 1fr auto; }
+
+a:focus-visible,
+button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+
+/* The two-tone wordmark, as on the splash */
+.tu { color: var(--coral); }
+.ne { color: var(--amber); }
+
+/* ---------- Home ---------- */
+
+.hero {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.mark {
+  width: var(--mark);
+  height: auto;
+  margin-bottom: calc(var(--mark) * -0.12);
+  animation: rise 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.mark .bloom { animation: breathe 6.5s ease-in-out infinite; }
+
+.wordmark {
+  font-weight: 800;
+  font-size: clamp(4rem, 15vw, 7.5rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  animation: rise 1.2s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.tagline {
+  font-weight: 600;
+  font-size: clamp(1.15rem, 3.2vw, 1.5rem);
+  color: var(--rose);
+  margin-top: 0.7rem;
+  animation: rise 1.2s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.holding {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+  margin-top: 2.4rem;
+  animation: rise 1.2s 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* ---------- Inner pages ---------- */
+
+.top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  justify-self: start;
+}
+.top svg { width: 30px; height: auto; }
+.top span { font-weight: 800; font-size: 1.55rem; letter-spacing: -0.045em; line-height: 1; }
+
+.page {
+  width: 100%;
+  max-width: 38rem;
+  justify-self: center;
+  align-self: center;
+  padding: 3rem 0;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.page h1 {
+  font-weight: 800;
+  font-size: clamp(2.1rem, 6vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-top: 0.6rem;
+}
+
+.lede {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.15rem, 2.8vw, 1.35rem);
+  line-height: 1.5;
+  margin-top: 1.1rem;
+}
+
+.page p:not(.eyebrow):not(.lede),
+.facts {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--rose);
+  margin-top: 1rem;
+}
+
+.page p a { color: var(--cream); }
+
+.facts { list-style: none; display: grid; gap: 0.6rem; margin-top: 1.5rem; }
+.facts li { position: relative; padding-left: 1.4rem; }
+.facts li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--coral), var(--amber));
+}
+
+.button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.95rem 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--coral), var(--amber));
+  color: var(--field-from);
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 14px 36px -18px rgba(240, 162, 60, 0.7);
+}
+.button:hover { filter: brightness(1.06); }
+
+.copy {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid rgba(255, 247, 241, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 247, 241, 0.08);
+  color: var(--cream);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.copy:hover { border-color: var(--amber); }
+
+/* ---------- Footer ---------- */
+
+.foot {
+  display: grid;
+  gap: 0.8rem;
+  justify-items: center;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--rose);
+}
+.foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.75rem; }
+.foot a { color: var(--cream); text-decoration: none; border-bottom: 1px solid rgba(255, 247, 241, 0.25); }
+.foot a:hover { border-color: var(--amber); }
+.legal { font-size: 0.78rem; line-height: 1.6; opacity: 0.75; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mark, .mark .bloom, .wordmark, .tagline, .holding { animation: none; }
+}

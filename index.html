@@ -3,130 +3,93 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tune — coming soon</title>
-  <meta name="description" content="Tune is a new dating app for meeting people you're genuinely in tune with. Launching in the United States. iOS and Android." />
+  <title>Tune — preparing to launch in Seattle</title>
+  <meta name="description" content="Tune is a new dating app, preparing to launch in Seattle." />
+  <meta name="theme-color" content="#31182f" />
 
   <!-- Social preview -->
-  <meta property="og:title" content="Tune — coming soon" />
-  <meta property="og:description" content="Meet people you're genuinely in tune with. A new dating app, launching in the US." />
+  <meta property="og:title" content="Tune" />
+  <meta property="og:description" content="Dating, tuned to you. Tune is preparing to launch in Seattle." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tune.dating" />
 
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --bg-1: #181030;
-      --bg-2: #2a1539;
-      --ink: #f5ece3;
-      --muted: #b3a6c2;
-      --coral: #ff8a5b;
-      --rose: #ef82ab;
-      --focus: #ffd9a3;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      min-height: 100svh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      place-items: center;
-      padding: 7vh 1.5rem 1.4rem;
-      background:
-        radial-gradient(120% 90% at 50% 18%, rgba(255, 138, 91, 0.16), transparent 55%),
-        linear-gradient(165deg, var(--bg-1) 0%, var(--bg-2) 100%);
-      color: var(--ink);
-      font-family: "DM Sans", system-ui, sans-serif;
-      text-align: center;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Signature: two waves drifting into phase, behind the wordmark */
-    .waves {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.55;
-      filter: blur(0.4px);
-    }
-    .wave { fill: none; stroke-width: 2.5; transform-box: view-box; }
-    .wave--coral { stroke: var(--coral); animation: drift 11s linear infinite; }
-    .wave--rose  { stroke: var(--rose);  opacity: 0.8; animation: drift 17s linear infinite reverse; }
-
-    @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-300px); } }
-
-    .stage { position: relative; z-index: 1; max-width: 40rem; }
-
-    .wordmark {
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 600;
-      font-size: clamp(4.5rem, 19vw, 11rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      background: linear-gradient(100deg, var(--coral), var(--rose));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .tagline {
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 500;
-      font-size: clamp(1.35rem, 3.6vw, 1.95rem);
-      line-height: 1.25;
-      margin-top: 1.6rem;
-    }
-
-    .sub {
-      color: var(--muted);
-      font-size: 1.02rem;
-      line-height: 1.5;
-      margin-top: 0.95rem;
-    }
-
-    .foot {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 0.8rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.75rem; }
-    .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(245, 236, 227, 0.25); }
-    .foot a:hover { border-color: var(--coral); }
-    .foot a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-    .legal { font-size: 0.78rem; line-height: 1.6; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .wave { animation: none; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Urbanist:wght@500;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
 </head>
-<body>
-  <svg class="waves" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <path class="wave wave--coral" d="M -300 300 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0 q 75 -70 150 0 q 75 70 150 0" />
-    <path class="wave wave--rose"  d="M -375 320 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0 q 75 -48 150 0 q 75 48 150 0" />
-  </svg>
+<body class="home">
+  <main class="hero">
+    <!-- The dark mark with its sundial and the hero bloom; drawn in the mark's own units, the seam at (50, 44) -->
+    <svg class="mark" viewBox="-14 -17 128 128" aria-hidden="true">
+      <defs>
+        <radialGradient id="bloom" gradientUnits="userSpaceOnUse" cx="50" cy="44" r="64">
+          <stop offset="0%" stop-color="#ffe4b2" stop-opacity="0.34" />
+          <stop offset="45%" stop-color="#f0a23c" stop-opacity="0.1" />
+          <stop offset="100%" stop-color="#f0a23c" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fff7f1" stop-opacity="0.95" />
+          <stop offset="32%" stop-color="#ffe4b2" stop-opacity="0.55" />
+          <stop offset="100%" stop-color="#ffe4b2" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="coral" gradientUnits="userSpaceOnUse" cx="50" cy="44" r="42">
+          <stop offset="0%" stop-color="#ffe6cf" />
+          <stop offset="24%" stop-color="#f29676" />
+          <stop offset="52%" stop-color="#e0694f" />
+          <stop offset="100%" stop-color="#c24f3b" />
+        </radialGradient>
+        <radialGradient id="amber" gradientUnits="userSpaceOnUse" cx="50" cy="44" r="42">
+          <stop offset="0%" stop-color="#fff3d6" />
+          <stop offset="24%" stop-color="#ffd27e" />
+          <stop offset="56%" stop-color="#f0a23c" />
+          <stop offset="100%" stop-color="#e2843a" />
+        </radialGradient>
+        <radialGradient id="sun" cx="42%" cy="38%" r="60%">
+          <stop offset="0%" stop-color="#fffaf0" />
+          <stop offset="45%" stop-color="#ffd590" />
+          <stop offset="100%" stop-color="#f09a3e" />
+        </radialGradient>
+      </defs>
+      <circle class="bloom" cx="50" cy="44" r="64" fill="url(#bloom)" />
+      <circle cx="50" cy="44" r="42" fill="url(#glow)" opacity="0.26" />
+      <g opacity="0.7">
+        <g fill="#ffe9c4" opacity="0.16">
+          <path d="M50.00,45.40 L80.00,44.00 L50.00,42.60 Z" />
+          <path d="M49.30,45.21 L75.98,59.00 L50.70,42.79 Z" />
+          <path d="M48.79,44.70 L65.00,69.98 L51.21,43.30 Z" />
+          <path d="M48.60,44.00 L50.00,74.00 L51.40,44.00 Z" />
+          <path d="M48.79,43.30 L35.00,69.98 L51.21,44.70 Z" />
+          <path d="M49.30,42.79 L24.02,59.00 L50.70,45.21 Z" />
+          <path d="M50.00,42.60 L20.00,44.00 L50.00,45.40 Z" />
+          <path d="M50.70,42.79 L24.02,29.00 L49.30,45.21 Z" />
+          <path d="M51.21,43.30 L35.00,18.02 L48.79,44.70 Z" />
+          <path d="M51.40,44.00 L50.00,14.00 L48.60,44.00 Z" />
+          <path d="M51.21,44.70 L65.00,18.02 L48.79,43.30 Z" />
+          <path d="M50.70,45.21 L75.98,29.00 L49.30,42.79 Z" />
+        </g>
+        <path d="M52.20,44.00 L50.00,10.00 L47.80,44.00 Z" fill="#fff3d8" opacity="0.7" />
+      </g>
+      <path transform="translate(11,-7)" d="M50,38 C54,30 64,24 72,30 C82,38 80,52 50,72" fill="none" stroke="url(#amber)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+      <path transform="translate(-11,7)" d="M50,38 C46,30 36,24 28,30 C18,38 20,52 50,72" fill="none" stroke="url(#coral)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="50" cy="44" r="9" fill="url(#glow)" opacity="0.7" />
+      <circle cx="50" cy="44" r="4.4" fill="url(#sun)" />
+    </svg>
 
-  <main class="stage">
-    <h1 class="wordmark">Tune</h1>
-    <p class="tagline">Meet people you're genuinely in tune with.</p>
-    <p class="sub">A fresh perspective on dating, launching in the&nbsp;US.</p>
+    <h1 class="wordmark"><span class="tu">tu</span><span class="ne">ne</span></h1>
+    <p class="tagline">Dating, tuned to you.</p>
+    <p class="holding">Tune is preparing to launch in Seattle.</p>
   </main>
 
   <footer class="foot">
     <nav aria-label="Footer">
       <a href="/about/">About Tune</a>
-      <a href="mailto:career@tune.dating">Careers</a>
-      <a href="mailto:support@tune.dating">Contact</a>
+      <a href="/careers/">Careers</a>
+      <a href="mailto:support@tune.dating">support@tune.dating</a>
     </nav>
     <p class="legal">© 2026 Tunelab Technologies, Inc.<br />251 Little Falls Drive, Wilmington, DE 19808</p>
   </footer>
