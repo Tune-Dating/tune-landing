@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Delete your Tune account</title>
+  <meta name="theme-color" content="#31182f" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <link rel="stylesheet" href="../site.css" />
+  <link rel="stylesheet" href="../legal.css" />
+</head>
+<body>
+  <a class="top" href="/" aria-label="Tune home">
+    <svg viewBox="4 13 92 74" aria-hidden="true">
+      <path transform="translate(11,-7)" d="M50,38 C54,30 64,24 72,30 C82,38 80,52 50,72" fill="none" stroke="#f0a23c" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+      <path transform="translate(-11,7)" d="M50,38 C46,30 36,24 28,30 C18,38 20,52 50,72" fill="none" stroke="#e0694f" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span aria-hidden="true"><span class="tu">tu</span><span class="ne">ne</span></span>
+  </a>
+
+  <main class="page legal-text">
+    <h1>Delete your Tune account</h1>
+    <p>Tune is made by Tunelab Technologies, Inc.</p>
+
+    <h2>In the app</h2>
+    <ol>
+      <li>Open the <strong>Profile</strong> tab.</li>
+      <li>Tap the gear: <strong>Account settings</strong>.</li>
+      <li>Tap <strong>Pause or delete account</strong>.</li>
+      <li>Tap <strong>Delete account…</strong>.</li>
+      <li>Tap <strong>Delete account</strong>.</li>
+    </ol>
+
+    <h2>Without the app</h2>
+    <p>Enter the phone number of the account.</p>
+    <div id="deletion" data-api-host="https://api.tune.dating">
+      <form id="code-form" class="deletion-form" novalidate>
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" />
+        <button id="code-button" type="submit">Send code</button>
+      </form>
+      <form id="confirm-form" class="deletion-form" novalidate hidden>
+        <label for="code">Code</label>
+        <input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" />
+        <button id="confirm-button" type="submit">Delete my account</button>
+      </form>
+      <h3 id="farewell-heading" hidden>Sorry to see you go</h3>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+      <p id="farewell-text" hidden>Changed your mind? Sign in by {date} and your account is back.</p>
+    </div>
+
+    <h2>What is kept</h2>
+    <p>Tune keeps some data after a deletion. <a href="https://tune.dating/privacy#data-retention">What Tune keeps</a></p>
+
+    <h2>Subscriptions</h2>
+    <p>A deletion does not stop a subscription that you bought from a store. Cancel it with <a href="https://account.apple.com/account/manage/section/subscriptions">Apple subscriptions</a> or <a href="https://play.google.com/store/account/subscriptions">Google Play subscriptions</a>.</p>
+
+    <script>
+(function () {
+  var container = document.getElementById("deletion");
+  var apiHost = container.getAttribute("data-api-host");
+  var codeForm = document.getElementById("code-form");
+  var confirmForm = document.getElementById("confirm-form");
+  var phoneInput = document.getElementById("phone");
+  var codeInput = document.getElementById("code");
+  var codeButton = document.getElementById("code-button");
+  var confirmButton = document.getElementById("confirm-button");
+  var message = document.getElementById("message");
+  var farewellHeading = document.getElementById("farewell-heading");
+  var farewellText = document.getElementById("farewell-text").textContent;
+
+  var US_E164 = /^\+1\d{10}$/;
+  var WORDS = {
+    usNumber: "Enter a US phone number.",
+    codeSent: "If an account uses this number, we sent it a code.",
+    codeWrong: "That code did not work. Ask for a new code.",
+    rateLimited: "Too many tries. Try again in an hour.",
+    wait: "Wait a few minutes, then ask for a new code.",
+    fault: "Something went wrong. Ask for a new code, then try again.",
+    closed: "Your account is closed, and its data will be deleted."
+  };
+
+  // The phone as the server takes it, the rule of the app's phone step (toE164 in
+  // apps/mobile/src/features/onboarding/phone-verification-port.ts): "(215) 555-0001", a bare ten digits and
+  // "+1 215 555 0001" all give "+12155550001". A leading country code 1 of eleven digits is dropped before the +1 is put on.
+  function toE164(phone) {
+    var digits = phone.replace(/\D/g, "");
+    var national = digits.length === 11 && digits.charAt(0) === "1" ? digits.slice(1) : digits;
+    return "+1" + national;
+  }
+
+  // The day the app names (restoreDay and monthDayOfDate in the app): the calendar day before the deadline's own local day,
+  // in the time zone of the reader, as the month in full and the day, with no year: "January 4".
+  function restoreDayText(deadlineIso) {
+    var deadline = new Date(deadlineIso);
+    var day = new Date(deadline.getFullYear(), deadline.getMonth(), deadline.getDate() - 1);
+    return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric" }).format(day);
+  }
+
+  function show(text) {
+    message.textContent = text;
+  }
+
+  function setBusy(busy) {
+    codeButton.disabled = busy;
+    confirmButton.disabled = busy;
+  }
+
+  // One request. A lost connection, a status other than 200 and a body that is not JSON all give null.
+  function post(path, body) {
+    return fetch(apiHost + path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).then(function (response) {
+      if (response.status !== 200) return null;
+      return response.json();
+    }).catch(function () {
+      return null;
+    });
+  }
+
+  function validPhone() {
+    var phone = toE164(phoneInput.value);
+    if (!US_E164.test(phone)) {
+      show(WORDS.usNumber);
+      return null;
+    }
+    return phone;
+  }
+
+  codeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var phone = validPhone();
+    if (phone === null) return;
+    setBusy(true);
+    show("");
+    post("/v1/account-deletion/web-code", { phone: phone }).then(function (answer) {
+      setBusy(false);
+      if (answer === null) return show(WORDS.fault);
+      if (answer.outcome === "accepted") {
+        confirmForm.hidden = false;
+        return show(WORDS.codeSent);
+      }
+      if (answer.outcome === "non_us_blocked") return show(WORDS.usNumber);
+      if (answer.outcome === "rate_limited") {
+        return show(typeof answer.resend_available_in_seconds === "number" ? WORDS.wait : WORDS.rateLimited);
+      }
+      show(WORDS.fault);
+    });
+  });
+
+  confirmForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var phone = validPhone();
+    if (phone === null) return;
+    var code = codeInput.value.trim();
+    if (code === "") return show(WORDS.codeWrong);
+    setBusy(true);
+    show("");
+    post("/v1/account-deletion/web-confirm", { phone: phone, code: code }).then(function (answer) {
+      if (answer === null) {
+        setBusy(false);
+        return show(WORDS.fault);
+      }
+      if (answer.outcome === "deletion_requested") {
+        codeForm.hidden = true;
+        confirmForm.hidden = true;
+        if (answer.restorable === true && typeof answer.restore_deadline === "string") {
+          farewellHeading.hidden = false;
+          return show(farewellText.replace("{date}", restoreDayText(answer.restore_deadline)));
+        }
+        return show(WORDS.closed);
+      }
+      setBusy(false);
+      if (answer.outcome === "code_wrong") return show(WORDS.codeWrong);
+      if (answer.outcome === "rate_limited") return show(WORDS.rateLimited);
+      show(WORDS.fault);
+    });
+  });
+})();
+    </script>
+  </main>
+
+  <footer class="foot">
+    <nav aria-label="Footer">
+      <a href="/about/">About Tune</a>
+      <a href="/terms/">Terms</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/consumer-health-data/">Consumer Health Data</a>
+      <a href="/safety/">Safety</a>
+    </nav>
+    <p class="legal">© 2026 Tunelab Technologies, Inc.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+/* The legal pages, made by the monorepo's scripts/website/build-legal-pages.py. System faces only: a legal page
+   loads nothing from another company. */
+.legal-text { max-width: 46rem; align-self: start; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+.legal-text h1 { font-family: inherit; }
+.legal-text h2 { font-size: 1.35rem; font-weight: 700; margin-top: 2.2rem; }
+.legal-text h3 { font-size: 1.1rem; font-weight: 700; margin-top: 1.6rem; }
+.legal-text p, .legal-text li, .legal-text td, .legal-text th { font-size: 1rem; line-height: 1.6; color: var(--rose); }
+.legal-text p { margin-top: 0.9rem; }
+.legal-text strong { color: var(--cream); font-size: max(1em, 16px); }
+.legal-text a { color: var(--cream); overflow-wrap: anywhere; }
+.legal-text ul, .legal-text ol { margin: 0.8rem 0 0 1.3rem; display: grid; gap: 0.35rem; }
+.legal-text .table { overflow-x: auto; margin-top: 1rem; }
+.legal-text table { border-collapse: collapse; width: 100%; }
+.legal-text th, .legal-text td { text-align: left; vertical-align: top; padding: 0.55rem 0.7rem; border-bottom: 1px solid rgba(255, 247, 241, 0.16); }
+.legal-text th { color: var(--cream); font-weight: 700; }
+.legal-text [hidden] { display: none; }
+.legal-text label { display: block; margin-top: 1.2rem; color: var(--cream); font-weight: 700; }
+.legal-text input { display: block; width: 100%; max-width: 22rem; margin-top: 0.4rem; padding: 0.6rem 0.7rem; font: inherit; color: var(--field-from); background: var(--cream); border: 2px solid transparent; border-radius: 6px; }
+.legal-text input:focus-visible, .legal-text button:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.legal-text button { margin-top: 0.8rem; padding: 0.6rem 1.1rem; font: inherit; font-weight: 700; color: var(--field-from); background: var(--amber); border: 0; border-radius: 6px; cursor: pointer; }
+.legal-text button:disabled { opacity: 0.55; cursor: default; }
+.legal-text .message { min-height: 1.6rem; color: var(--cream); }
+.legal-text .draft { color: var(--field-from); background: var(--amber); padding: 0.5rem 0.8rem; border-radius: 6px; font-weight: 700; }
