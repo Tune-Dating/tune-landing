@@ -1,0 +1,2 @@
+# Jekyll leaves out a folder whose name starts with a dot; the app link files in `.well-known` must be served.
+include: [".well-known"]
